@@ -1,0 +1,83 @@
+{
+  "name": "stampix-node-serverless-challenge",
+  "version": "1.0.0",
+  "description": "Stampix coding challenge focusing on Node.js & Serverless principles",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "node src/test.ts",
+    "watch": "tsc --watch",
+    "start": "serverless offline",
+    "lint": "lint-staged"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/stampix/stampix-node-serverless-challenge.git"
+  },
+  "author": "Stampix",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/stampix/stampix-node-serverless-challenge#readme",
+  "devDependencies": {
+    "@commitlint/config-conventional": "^11.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.5.0",
+    "@typescript-eslint/parser": "^4.5.0",
+    "commitlint": "^11.0.0",
+    "eslint": "^7.11.0",
+    "eslint-config-prettier": "^6.13.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "faker": "^5.1.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.2",
+    "prettier": "^2.1.2",
+    "serverless": "^2.8.0",
+    "serverless-offline": "^6.8.0",
+    "sqlite3": "^5.0.0",
+    "typescript": "^4.2.4"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "yarn lint"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+      "plugin:prettier/recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true
+        }
+      ]
+    },
+    "ignorePatterns": [
+      "node_modules/",
+      "dist/",
+      "scripts/"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint",
+      "tsc --noEmit"
+    ]
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "serverless-http": "^2.7.0"
+  }
+}

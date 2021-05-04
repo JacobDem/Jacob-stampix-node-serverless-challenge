@@ -1,0 +1,46 @@
+service:
+  name: stampix-node-serverless-challenge
+
+plugins:
+  - serverless-offline
+
+package:
+  individually: true
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+custom:
+  serverless-offline:
+    noPrependStageInUrl:
+      true
+
+functions:
+  list:
+    handler: dist/list.handler
+    events:
+      - httpApi:
+          method: get
+          path: /users
+      - httpApi:
+          method: options
+          path: /users
+  get:
+    handler: dist/get.handler
+    events:
+      - httpApi:
+          method: get
+          path: /user/{id}
+      - httpApi:
+          method: options
+          path: /user/{id}
+  create:
+    handler: dist/create.handler
+    events:
+      - httpApi:
+          method: post
+          path: /user
+      - httpApi:
+          method: options
+          path: /user
